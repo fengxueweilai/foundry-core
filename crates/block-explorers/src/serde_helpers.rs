@@ -219,7 +219,7 @@ mod tests {
             StringifiedNumeric::String("0x10000000000000000".into()),
             StringifiedNumeric::U256(U256::MAX),
         ] {
-            assert!(U64::try_from(value).is_err());
+            assert_eq!(U64::try_from(value).unwrap_err(), "Uint<256> value is too large for u64");
         }
         assert_eq!(
             U64::try_from(StringifiedNumeric::U256(U256::from(u64::MAX))).unwrap(),
